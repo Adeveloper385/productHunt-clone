@@ -76,3 +76,36 @@ a {
 .bg-white {
   background-color: #fff;
 }
+
+.form {
+  max-width: 600px;
+  width: 95%;
+  margin: 5rem auto 0 auto;
+}
+
+.field {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.field label {
+  flex: 0 0 150px;
+  font-size: 1.8rem;
+}
+
+.field input {
+  flex: 1;
+  padding: 1rem;
+}
+
+.error {
+  padding: 1rem;
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: red;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 2rem 0;
+}

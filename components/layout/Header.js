@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Search from "../ui/Search";
 import Nav from "./Nav";
 import Button from "../ui/Button";
+import { FirebaseContext } from "../../firebase";
 
 import Link from "next/link";
 
 function Header() {
-  const user = false;
+
+  const { user, firebase } = useContext(FirebaseContext)
+  console.log(user)
 
   return (
     <>
@@ -22,8 +25,8 @@ function Header() {
         <div className="buttons-container">
           {user ? (
             <>
-              <p className="hi">Hola! André</p>
-              <Button text="Cerrar Sesión" />
+              <p className="hi">Hola! {user.displayName}</p>
+              <Button text="Cerrar Sesión" onClick={() => firebase.logOut()} />
             </>
           ) : (
             <>
