@@ -16,7 +16,7 @@ export default function Register() {
 
   const [error, setError ] = useState(false)
 
-  const { values, errors, submitForm, handleChange, handleSubmit, handleBlur } =
+  const { values, errors, handleChange, handleSubmit, handleBlur } =
     useValidation(INITIAL_STATE, createAccountValidation, createAcount);
 
   const { name, email, password } = values;
