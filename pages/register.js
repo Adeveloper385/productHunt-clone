@@ -5,6 +5,7 @@ import useValidation from "../hooks/useValidation";
 import createAccountValidation from "../validation/CreateAccount";
 
 import firebase from "../firebase";
+import Button from '../components/ui/Button';
 
 const INITIAL_STATE = {
   name: "",
@@ -74,26 +75,11 @@ export default function Register() {
           </div>
           {errors.password && <p className="error">{errors.password}</p>}
           {error && <p className="error">{error}</p>}
-          <input className="submit" type="submit" value="Crear Cuenta" />
+          <Button type="submit" bgColor={true} text="Crear Cuenta" />
         </form>
       </Layout>
       <style jsx>
         {`
-          .submit {
-            font-weight: 700;
-            text-transform: uppercase;
-            border: none;
-            padding: 1rem;
-            background-color: var(--naranja);
-            color: #fff;
-            font-size: 1.8rem;
-            text-align: center;
-            width: 100%;
-          }
-
-          .submit :hover {
-            cursor: pointer;
-          }
 
           h1 {
             text-align: center;

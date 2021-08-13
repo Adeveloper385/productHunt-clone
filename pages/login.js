@@ -3,6 +3,7 @@ import Router from "next/router"
 import Layout from "../components/layout";
 import useValidation from "../hooks/useValidation";
 import LoginValidation from "../validation/Login";
+import Button from '../components/ui/Button';
 
 import firebase from "../firebase";
 
@@ -62,26 +63,11 @@ export default function Login() {
           </div>
           {errors.password && <p className="error">{errors.password}</p>}
           {error && <p className="error">{error}</p>}
-          <input className="submit" type="submit" value="Ingresar" />
+          <Button type="submit" bgColor={true} text="Ingresar" />
         </form>
       </Layout>
       <style jsx>
         {`
-          .submit {
-            font-weight: 700;
-            text-transform: uppercase;
-            border: none;
-            padding: 1rem;
-            background-color: var(--naranja);
-            color: #fff;
-            font-size: 1.8rem;
-            text-align: center;
-            width: 100%;
-          }
-
-          .submit :hover {
-            cursor: pointer;
-          }
 
           h1 {
             text-align: center;

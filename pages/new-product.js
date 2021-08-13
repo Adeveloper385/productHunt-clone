@@ -4,8 +4,10 @@ import Layout from "../components/layout";
 import useValidation from "../hooks/useValidation";
 import createProductValidation from "../validation/CreateProduct";
 import FileUploader from "react-firebase-file-uploader";
+import Error404 from "../components/layout/404";
 
 import { FirebaseContext } from "../firebase";
+import Button from "../components/ui/Button";
 
 const INITIAL_STATE = {
   name: "",
@@ -45,11 +47,16 @@ export default function NewProduct() {
       likes: 0,
       comments: [],
       create_at: Date.now(),
+      created_by: {
+        id: user.uid,
+        name: user.displayName,
+      },
+      hasVoted: [],
     };
 
     firebase.db.collection("products").add(product);
 
-    router.push("/")
+    router.push("/");
   }
 
   //    Event Handlers
@@ -79,6 +86,13 @@ export default function NewProduct() {
         setImageUrl(url);
       });
   };
+
+  if (!user)
+    return (
+      <Layout>
+        <Error404 />
+      </Layout>
+    );
 
   return (
     <>
@@ -160,27 +174,11 @@ export default function NewProduct() {
           </fieldset>
 
           {error && <p className="error">{error}</p>}
-          <input className="submit" type="submit" value="Crear Producto" />
+          <Button type="submit" text="Crear Producto" bgColor={true} />
         </form>
       </Layout>
       <style jsx>
         {`
-          .submit {
-            font-weight: 700;
-            text-transform: uppercase;
-            border: none;
-            padding: 1rem;
-            background-color: var(--naranja);
-            color: #fff;
-            font-size: 1.8rem;
-            text-align: center;
-            width: 100%;
-          }
-
-          .submit :hover {
-            cursor: pointer;
-          }
-
           h1 {
             text-align: center;
             margin-top: 5rem;

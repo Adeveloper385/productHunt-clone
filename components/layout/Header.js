@@ -9,14 +9,13 @@ import Link from "next/link";
 function Header() {
 
   const { user, firebase } = useContext(FirebaseContext)
-  console.log(user)
 
   return (
     <>
       <header className="container">
         <div className="search">
           <Link href="/">
-            <p className="logo">P</p>
+            <a className="logo">P</a>
           </Link>
 
           <Search />
