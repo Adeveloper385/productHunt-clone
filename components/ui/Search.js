@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import Router from "next/router";
 
 function Search() {
+  const [search, setSearch] = useState("");
+
+  function searchProduct(e) {
+    e.preventDefault();
+
+    if (search.trim() === "") return;
+
+    Router.push({
+      pathname: "/search",
+      query: { q: search },
+    });
+  }
+
   return (
-    <form>
-      <input 
-        type="text" 
-        placeholder="Buscar..." 
-        className="input-search" 
+    <form onSubmit={searchProduct}>
+      <input
+        type="text"
+        placeholder="Buscar..."
+        className="input-search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
       <button type="submit" className="input-submit">
         Buscar

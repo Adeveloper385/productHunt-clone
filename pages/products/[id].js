@@ -13,12 +13,26 @@ function Product() {
   const [comment, setComment] = useState({});
   const [dbQuery, setDbQuery] = useState(true);
 
+  const {
+    comments,
+    create_at,
+    description,
+    business,
+    name,
+    url,
+    imageUrl,
+    likes,
+    created_by,
+    hasVoted,
+  } = product;
+
   const router = useRouter();
   const {
     query: { id },
   } = router;
 
   console.log(router);
+  console.log(created_by);
 
   const { firebase, user } = useContext(FirebaseContext);
 
@@ -101,18 +115,24 @@ function Product() {
     setDbQuery(true);
   };
 
-  const {
-    comments,
-    create_at,
-    description,
-    business,
-    name,
-    url,
-    imageUrl,
-    likes,
-    created_by,
-    hasVoted,
-  } = product;
+  const canDelete = () => {
+    if (!user) return false;
+
+    if (created_by.id === user.uid) {
+      return true;
+    }
+  };
+
+  const deleteProduct = async () => {
+    if (!user) return router.push("/login");
+    if (!created_by !== user.uid) return router.push("/");
+    try {
+      firebase.db.collection("products").doc(id).delete();
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Layout>
@@ -208,6 +228,9 @@ function Product() {
                 </div>
               </aside>
             </div>
+            {canDelete() && (
+              <Button bgColor={false} text="Eliminar" onClick={deleteProduct} />
+            )}
           </div>
         )}
       </>
