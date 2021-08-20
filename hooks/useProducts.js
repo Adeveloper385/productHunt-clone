@@ -7,13 +7,13 @@ const useProducts = (order) => {
 
   useEffect(() => {
     function snapshotManager(snapshot) {
-      const products = snapshot.docs.map((doc) => {
+      const products1 = snapshot.docs.map((doc) => {
         return {
           id: doc.id,
           ...doc.data(),
         };
       });
-      setProducts(products);
+      setProducts(products1);
     }
 
     (function getProducts() {
@@ -25,8 +25,8 @@ const useProducts = (order) => {
   }, []);
 
   return {
-    products
-  }
+    products,
+  };
 };
 
 export default useProducts;

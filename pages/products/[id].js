@@ -6,6 +6,7 @@ import Layout from "../../components/layout";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { es } from "date-fns/locale";
 import Button from "../../components/ui/Button";
+import Image from "next/image";
 
 function Product() {
   const [product, setProduct] = useState({});
@@ -151,7 +152,12 @@ function Product() {
                 <p>
                   Por: {created_by.name} de {business}
                 </p>
-                <img src={imageUrl} />
+                <Image
+                  width={500}
+                  height={500}
+                  className="img"
+                  src={imageUrl}
+                />
                 <p>{description}</p>
 
                 {user && (
@@ -247,7 +253,7 @@ function Product() {
             margin: 0 auto;
           }
 
-          img {
+          .img {
             width: 100%
           }
 

@@ -2,6 +2,7 @@ import React from "react";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { es } from "date-fns/locale";
 import Link from "next/link";
+import Image from "next/image";
 
 function ProductDetails({ product }) {
   const {
@@ -20,7 +21,7 @@ function ProductDetails({ product }) {
     <li className="product">
       <div className="product-description">
         <div>
-          <img src={imageUrl} />
+          <Image width={400} height={300} src={imageUrl} />
         </div>
         <div>
           <Link href="/products/[id]" as={`/products/${id}`}>
@@ -29,7 +30,11 @@ function ProductDetails({ product }) {
           <p className="description">{description}</p>
           <div className="comments">
             <div>
-              <img src="/static/img/comentario.png" />
+              <Image
+                width={15}
+                height={15}
+                src="/static/img/comentario.png"
+              />
               <p>{comments.length} Comentarios</p>
             </div>
           </div>
@@ -45,7 +50,7 @@ function ProductDetails({ product }) {
       </div>
       <style jsx>
         {`
-          img {
+          .img {
             width: 300px;
           }
           .product {
